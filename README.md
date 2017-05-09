@@ -10,3 +10,5 @@ MyPWA App: bisher zum Testen und als DHBW Projekt, wird aber noch ausgebaut
  - git clone https://github.com/janjj/MyPWApp.git
  - cd MyPWApp
  - npm install
+ - ionic platform add android (OR ios)
+ - ionic run android
