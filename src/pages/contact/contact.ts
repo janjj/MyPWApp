@@ -14,6 +14,8 @@ export class ContactPage {
     private canv: any;
     private ctx: any;
 
+    private _image;
+
     constructor(private nav: NavController, private zone: NgZone) {
 
         this.zone.run(() => {
@@ -22,14 +24,21 @@ export class ContactPage {
             this.getHeight = window.innerHeight;
         });
         console.log('width', this.getWidth);
-        this.calcWidth = this.getWidth - 80;  // Calculate the width of device and substract 80 from device width;
+        this.calcWidth = this.getWidth - 80;  // Berechne der breite des Device's -80
         console.log('calc width', this.calcWidth);
 
+        /* this._image = new Image();
+         this._image.onload = (() => this.imageReady());*/
+
+        /*  //testing canvas
+         this.canv.width = 200;
+         this.canv.height = 400;
+         this.canv.style.border = "1px solid gray"; */
     }
 
 
     startCamera() {
-        // let react = {x: 40, y: 100, width: this.calcWidth ,height: 220}   //Decrepted due to previous code
+        // let react = {x: 40, y: 100, width: this.calcWidth ,height: 220}   //Decrepted
         CameraPreview.startCamera({
             x: 40,
             y: 100,
@@ -40,8 +49,6 @@ export class ContactPage {
             tapPhoto: true
         });
         //.startCamera(react, defaultCamera:'back',tapEnabled: true, dragEnabled: true, toBack:true, alpha:1);  //Decrepeted
-
-
     }
 
     stopCamera() {
@@ -49,31 +56,32 @@ export class ContactPage {
     }
 
     takePicture() {
-
-        // let size = {maxWidth: 1024, maxHeight: 640};
-        // CameraPreview.takePicture(size);         //Decrepted
         CameraPreview.takePicture(function (imgData) {
             (<HTMLInputElement>document.getElementById('previewPicture')).src = 'data:image/jpeg;base64,' + imgData;
+            //this.ctx.drawImage(this.imgData, 0, 0, imgData.get, 200);
         });
     }
 
-//...
-    UseFilter() {
-        (<HTMLInputElement>document.getElementById('previewPicture')).src;
-    }
-
-    SwitchCamera() {
+    switchCamera() {
         CameraPreview.switchCamera();
     }
 
-    showCamera() {
-        CameraPreview.show();
+    /*
+     Filter und Canvas (test) für die Bilder
+     */
+    useFilter() {
+        /* (<HTMLInputElement>document.getElementById('previewPicture')).src; */
+
+        // this.getPixels((<HTMLInputElement>document.getElementById('previewPicture')).src);
+        this.filterImage(this.brightness, (<HTMLInputElement>document.getElementById('previewPicture')).src,
+            [0, -1, 0,
+                -1, 5, -1,
+                0, -1, 0])
     }
 
-    hideCamera() {
-        CameraPreview.hide();
+    imageReady() {
+        // this.ctx.drawImage(this._image, 0, 0, 960, 640);
     }
-
 
     getPixels(img) {
         var c = this.getCanvas(img.width, img.height);
@@ -92,7 +100,7 @@ export class ContactPage {
         return this.canv;
     };
 
-    FilterImage(filter, image, var_args) {
+    filterImage(filter, image, var_args) {
         var args = [this.getPixels(image)];
         for (var i = 2; i < arguments.length; i++) {
             args.push(arguments[i]);
@@ -100,6 +108,9 @@ export class ContactPage {
         return filter.apply(null, args);
     }
 
+    /*
+     Beginn der konkreten filter
+     */
     brightness(pixels, adjustment) {
         var d = pixels.data;
         for (var i = 0; i < d.length; i += 4) {
@@ -109,6 +120,4 @@ export class ContactPage {
         }
         return pixels;
     };
-
-
 }

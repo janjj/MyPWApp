@@ -1,32 +1,31 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Cam
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Cam
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <h5>Camera Preview</h5>
+    <h5>Camera Preview</h5>
 
-  <div class="displaybottom">
-    <button ion-button (click)="startCamera()"> Start Camera</button>
-    <button ion-button (click)="stopCamera()"> Stop Camera</button>
+    <div class="displaybottom">
+        <button ion-button (click)="startCamera()"> Start Camera</button>
+        <button ion-button (click)="stopCamera()"> Stop Camera</button>
 
-    <button ion-button (click)="takePicture()"> Take Picture Camera</button>
+        <button ion-button (click)="takePicture()"> Take Picture Camera</button>
 
-    <button ion-button (click)="SwitchCamera()"> Switch  Camera</button>
+        <button ion-button (click)="switchCamera()"> Switch Camera</button>
 
-    <button ion-button (click)="showCamera()"> Show Camera</button>
+        <button ion-button (click)="useFilter()"> Filter</button>
 
-    <button ion-button (click)="hideCamera()"> Hide Camera</button>
-  </div>
+    </div>
 
-  <div class="pictures">
-    <p><img id="previewPicture" width="200" /></p>
+    <div class="pictures">
+        <p><img id="previewPicture" width="200"/></p>
 
-    <canvas id="cnvs" height="720" width="1280"></canvas>
-    <!--<p><img id="originalPicture" width="200"/></p>-->
-  </div>
+        <canvas id="cnvs" height="400" width="200"></canvas>
+        <!--<p><img id="originalPicture" width="200"/></p>-->
+    </div>
 </ion-content>
