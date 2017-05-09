@@ -14,7 +14,7 @@ export class ContactPage {
     private canv: any;
     private ctx: any;
 
-    private _image;
+    // private _image;
 
     constructor(private nav: NavController, private zone: NgZone) {
 
