@@ -1,17 +1,30 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Cam
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+
+  <h5>Camera Preview</h5>
+
+  <div class="displaybottom">
+    <button ion-button (click)="startCamera()"> Start Camera</button>
+    <button ion-button (click)="stopCamera()"> Stop Camera</button>
+
+    <button ion-button (click)="takePicture()"> Take Picture Camera</button>
+
+    <button ion-button (click)="SwitchCamera()"> Switch  Camera</button>
+
+    <button ion-button (click)="showCamera()"> Show Camera</button>
+
+    <button ion-button (click)="hideCamera()"> Hide Camera</button>
+  </div>
+
+  <div class="pictures">
+    <p><img id="previewPicture" width="200" /></p>
+    <!--<p><img id="originalPicture" width="200"/></p>-->
+  </div>
 </ion-content>
